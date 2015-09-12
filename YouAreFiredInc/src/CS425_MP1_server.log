@@ -1,0 +1,38 @@
+INFO  2015-09-11 19:47:16,326 Server socket established
+INFO  2015-09-11 19:53:17,128 Server socket established
+INFO  2015-09-11 20:02:37,357 Server socket established
+INFO  2015-09-11 20:02:52,387 Connection established with client number = 1
+INFO  2015-09-11 20:02:52,387 Connection established at socket = Socket[addr=/130.126.28.13,port=43647,localport=2000]
+INFO  2015-09-11 20:02:52,387 Listening client: 1
+INFO  2015-09-11 20:03:02,110 Client said -->Hello!! are u listening??
+INFO  2015-09-11 20:03:02,110 Server to client --> 1
+INFO  2015-09-11 20:03:02,110 Server reply --> Hello!! are u listening??
+INFO  2015-09-11 20:03:14,670 Client said -->Hello!!!
+INFO  2015-09-11 20:03:14,670 Server to client --> 1
+INFO  2015-09-11 20:03:14,670 Server reply --> Hello!!!
+INFO  2015-09-11 20:03:21,086 Client said -->exit
+INFO  2015-09-11 20:03:21,086 Server to client --> 1
+INFO  2015-09-11 20:03:21,086 Server reply --> exit
+INFO  2015-09-11 20:03:21,087 All connections closed, bye
+INFO  2015-09-11 20:04:15,462 Connection established with client number = 2
+INFO  2015-09-11 20:04:15,463 Connection established at socket = Socket[addr=/130.126.28.13,port=43649,localport=2000]
+INFO  2015-09-11 20:04:15,463 Listening client: 2
+INFO  2015-09-11 20:04:23,974 Client said -->Hi
+INFO  2015-09-11 20:04:23,974 Server to client --> 2
+INFO  2015-09-11 20:04:23,974 Server reply --> Hi
+INFO  2015-09-11 20:04:34,533 Client said -->null
+INFO  2015-09-11 20:47:02,949 Server socket established, , listening at port 2000
+INFO  2015-09-11 20:52:30,397 Server socket established, , listening at port 2000
+INFO  2015-09-11 20:54:35,848 Server socket established, , listening at port 2000
+INFO  2015-09-11 20:55:35,732 Server socket established, , listening at port 2000
+INFO  2015-09-11 20:56:01,496 Connection established with client number = 1
+INFO  2015-09-11 20:56:01,496 Connection established at socket = Socket[addr=/130.126.28.13,port=43736,localport=2000]
+INFO  2015-09-11 20:56:01,497 Listening client: 1
+INFO  2015-09-11 20:56:01,498 Client fired -->grep -i "connection" *.log
+INFO  2015-09-11 20:56:01,568 message flushed back to server
+INFO  2015-09-11 20:56:48,646 Connection established with client number = 2
+INFO  2015-09-11 20:56:48,646 Connection established at socket = Socket[addr=/130.126.28.13,port=43738,localport=2000]
+INFO  2015-09-11 20:56:48,646 Listening client: 2
+INFO  2015-09-11 20:56:48,647 Client fired -->grep Connection *.log
+INFO  2015-09-11 20:56:48,651 message flushed back to server
+INFO  2015-09-11 20:56:48,652 Client fired -->null

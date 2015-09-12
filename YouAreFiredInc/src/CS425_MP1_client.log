@@ -1,0 +1,38 @@
+INFO  2015-09-11 19:54:12,051 Logging Initialized
+INFO  2015-09-11 20:02:52,375 Logging Initialized
+INFO  2015-09-11 20:02:52,387 Socket established with 130.126.28.13
+INFO  2015-09-11 20:02:52,388 Enter you message. this will be tranfered to server
+INFO  2015-09-11 20:03:02,110 User entered: -->Hello!! are u listening??
+INFO  2015-09-11 20:03:02,110 message flushed to server
+INFO  2015-09-11 20:03:02,111 Server message to clientNbr1 : Accepted the text: Hello!! are u listening??
+INFO  2015-09-11 20:03:02,111 Enter you message. this will be tranfered to server
+INFO  2015-09-11 20:03:14,669 User entered: -->Hello!!!
+INFO  2015-09-11 20:03:14,670 message flushed to server
+INFO  2015-09-11 20:03:14,670 
+INFO  2015-09-11 20:03:14,670 Enter you message. this will be tranfered to server
+INFO  2015-09-11 20:03:21,085 User entered: -->exit
+INFO  2015-09-11 20:03:21,086 message flushed to server
+INFO  2015-09-11 20:03:21,086 Server message to clientNbr1 : Accepted the text: Hello!!!
+INFO  2015-09-11 20:04:15,450 Logging Initialized
+INFO  2015-09-11 20:04:15,462 Socket established with 130.126.28.13
+INFO  2015-09-11 20:04:15,463 Enter you message. this will be tranfered to server
+INFO  2015-09-11 20:04:23,974 User entered: -->Hi
+INFO  2015-09-11 20:04:23,974 message flushed to server
+INFO  2015-09-11 20:04:23,974 Server message to clientNbr2 : Accepted the text: Hi
+INFO  2015-09-11 20:04:23,975 Enter you message. this will be tranfered to server
+INFO  2015-09-11 20:49:23,340 Logging Initialized
+INFO  2015-09-11 20:52:36,496 Logging Initialized
+INFO  2015-09-11 20:53:29,067 Logging Initialized
+INFO  2015-09-11 20:54:43,276 Logging Initialized
+INFO  2015-09-11 20:55:40,088 Logging Initialized
+INFO  2015-09-11 20:56:01,496 Socket established with 130.126.28.13
+INFO  2015-09-11 20:56:01,497 message flushed to server
+INFO  2015-09-11 20:56:01,568 Error Message as below: 
+INFO  2015-09-11 20:56:36,984 Logging Initialized
+INFO  2015-09-11 20:56:48,646 Socket established with 130.126.28.13
+INFO  2015-09-11 20:56:48,647 message flushed to server
+INFO  2015-09-11 20:56:48,651 Error Message as below: 
+INFO  2015-09-11 20:59:53,527 Logging Initialized
+INFO  2015-09-11 21:00:24,805 Socket established with 130.126.28.13
+INFO  2015-09-11 21:00:24,806 message flushed to server
+INFO  2015-09-11 21:02:39,269 Error Message as below: 

@@ -1,0 +1,7 @@
+INFO  2015-09-11 20:59:29,720 Server socket established, , listening at port 2000
+INFO  2015-09-11 21:00:24,805 Connection established with client number = 1
+INFO  2015-09-11 21:00:24,806 Connection established at socket = Socket[addr=/130.126.28.13,port=43744,localport=2000]
+INFO  2015-09-11 21:00:24,806 Listening client: 1
+INFO  2015-09-11 21:00:24,807 Client fired -->grep -i Info *.log
+INFO  2015-09-11 21:02:39,269 message flushed back to server
+INFO  2015-09-11 21:02:39,271 Client fired -->null

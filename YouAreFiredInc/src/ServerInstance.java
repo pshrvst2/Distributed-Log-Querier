@@ -22,6 +22,7 @@ public class ServerInstance extends Thread {
 	private static Logger log = Logger.getLogger(ServerInstance.class);
 	private Socket clientSocket = null;
 	private int clientNbr = 0;
+	private final String PATH = " $HOME/git/YouAreFiredInc/YouAreFiredInc/log.txt"; 
 	
 	public ServerInstance(Socket clientSocket, int clientNbr) {
 		//super();
@@ -49,20 +50,27 @@ public class ServerInstance extends Thread {
 				clientCommand = reader.readLine();
 				log.info("Client fired -->" +clientCommand);
 				System.out.println("Client fired -->" +clientCommand);
+				
 				if(clientCommand.equalsIgnoreCase("exit"))
 					flag = false;
 				
 				Runtime rt = Runtime.getRuntime();
-		        Process proc = rt.exec(clientCommand);
+		        Process proc = rt.exec(clientCommand+PATH);
+		        
+		        System.out.println("The complete command is:" +clientCommand+PATH);
+		        
 		        String outputOfTheCommand = inputStreamToString(proc.getInputStream());
-		        if(!outputOfTheCommand.isEmpty())
+		        System.out.println("The output is:" +outputOfTheCommand);
+		        
+		        if(!(outputOfTheCommand.isEmpty()|| outputOfTheCommand==null))
 		        {
 		        	System.out.println(outputOfTheCommand);
 		        	pw.println(outputOfTheCommand);
 		        	log.info("message flushed back to client");
 		        	log.info("Server to client --> " + clientNbr);
 					log.info("Server reply --> " + outputOfTheCommand);
-		        }
+		        }  
+		        
 		        // print out the error message if there is any
 		        else
 		        {

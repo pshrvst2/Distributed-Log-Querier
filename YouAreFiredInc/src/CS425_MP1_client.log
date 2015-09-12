@@ -36,3 +36,61 @@ INFO  2015-09-11 20:59:53,527 Logging Initialized
 INFO  2015-09-11 21:00:24,805 Socket established with 130.126.28.13
 INFO  2015-09-11 21:00:24,806 message flushed to server
 INFO  2015-09-11 21:02:39,269 Error Message as below: 
+INFO  2015-09-11 21:46:24,660 Logging Initialized
+INFO  2015-09-11 21:47:02,651 Logging Initialized
+INFO  2015-09-11 21:47:20,603 Socket established with 192.17.11.12
+INFO  2015-09-11 21:47:20,605 message flushed to server
+INFO  2015-09-11 21:48:32,516 Error Message as below: 
+INFO  2015-09-11 21:49:37,928 Logging Initialized
+INFO  2015-09-11 21:49:54,110 Socket established with 192.17.11.12
+INFO  2015-09-11 21:49:54,111 message flushed to server
+INFO  2015-09-11 21:50:05,761 
+INFO  2015-09-11 21:51:25,793 Logging Initialized
+INFO  2015-09-11 21:51:36,460 Socket established with 192.17.11.12
+INFO  2015-09-11 21:51:36,462 message flushed to server
+INFO  2015-09-11 21:51:36,529 Error Message as below: 
+INFO  2015-09-11 21:51:56,162 Logging Initialized
+ERROR 2015-09-11 21:53:01,612 java.io.IOException: Input/output error
+INFO  2015-09-11 21:53:23,775 Logging Initialized
+INFO  2015-09-11 21:53:33,556 Socket established with 192.17.11.12
+INFO  2015-09-11 21:53:33,557 message flushed to server
+INFO  2015-09-11 21:54:15,097 Error Message as below: 
+INFO  2015-09-11 21:55:22,400 Logging Initialized
+INFO  2015-09-11 21:55:50,168 Socket established with 192.17.11.12
+INFO  2015-09-11 21:55:50,169 message flushed to server
+INFO  2015-09-11 21:57:22,836 Error Message as below: 
+INFO  2015-09-11 21:57:45,984 Logging Initialized
+INFO  2015-09-11 22:15:19,693 Logging Initialized
+INFO  2015-09-11 22:15:31,359 Socket established with 192.17.11.12
+INFO  2015-09-11 22:15:31,360 message flushed to server
+INFO  2015-09-11 22:15:50,177 INFO  2015-09-11 21:00:24,805 Connection established with client number = 1
+INFO  2015-09-11 22:16:11,482 Logging Initialized
+INFO  2015-09-11 22:16:17,617 Socket established with 192.17.11.12
+INFO  2015-09-11 22:16:17,619 message flushed to server
+INFO  2015-09-11 22:16:31,154 INFO  2015-09-11 21:00:24,805 Connection established with client number = 1
+INFO  2015-09-11 22:17:02,811 Logging Initialized
+INFO  2015-09-11 22:17:08,849 Socket established with 192.17.11.11
+INFO  2015-09-11 22:17:08,849 Socket established with 192.17.11.12
+INFO  2015-09-11 22:17:08,850 message flushed to server
+INFO  2015-09-11 22:17:08,850 message flushed to server
+INFO  2015-09-11 22:17:32,853 INFO  2015-09-11 21:00:24,805 Connection established with client number = 1
+INFO  2015-09-11 22:17:32,853 INFO  2015-09-11 21:00:24,806 Connection established at socket = Socket[addr=/130.126.28.13,port=43744,localport=2000]
+INFO  2015-09-11 22:28:09,879 Logging Initialized
+INFO  2015-09-11 22:29:01,496 Logging Initialized
+INFO  2015-09-11 22:29:08,226 Socket established with 192.17.11.11
+INFO  2015-09-11 22:29:08,227 message flushed to server
+INFO  2015-09-11 22:29:08,228 Socket established with 192.17.11.12
+INFO  2015-09-11 22:29:08,228 message flushed to server
+INFO  2015-09-11 22:31:30,321 
+INFO  2015-09-11 22:35:58,448 Logging Initialized
+INFO  2015-09-11 22:36:05,849 Socket established with 192.17.11.11
+INFO  2015-09-11 22:36:05,850 Socket established with 192.17.11.12
+INFO  2015-09-11 22:36:05,851 message flushed to server
+INFO  2015-09-11 22:36:05,851 message flushed to server
+INFO  2015-09-11 22:37:12,154 Logging Initialized
+INFO  2015-09-11 22:37:16,532 Socket established with 192.17.11.11
+INFO  2015-09-11 22:37:16,532 Socket established with 192.17.11.12
+INFO  2015-09-11 22:37:16,533 message flushed to server
+INFO  2015-09-11 22:37:16,533 message flushed to server
+INFO  2015-09-11 22:37:45,955 INFO  2015-09-11 22:37:16,536 Client fired -->grep x
+INFO  2015-09-11 22:37:45,955 

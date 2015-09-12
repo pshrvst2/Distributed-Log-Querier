@@ -36,3 +36,27 @@ INFO  2015-09-11 20:56:48,646 Listening client: 2
 INFO  2015-09-11 20:56:48,647 Client fired -->grep Connection *.log
 INFO  2015-09-11 20:56:48,651 message flushed back to server
 INFO  2015-09-11 20:56:48,652 Client fired -->null
+INFO  2015-09-11 22:16:56,879 Server socket established, , listening at port 2000
+INFO  2015-09-11 22:17:08,849 Connection established with client number = 1
+INFO  2015-09-11 22:17:08,849 Connection established at socket = Socket[addr=/192.17.11.11,port=51214,localport=2000]
+INFO  2015-09-11 22:17:08,850 Listening client: 1
+INFO  2015-09-11 22:17:08,851 Client fired -->grep -i Conn*
+INFO  2015-09-11 22:19:14,413 message flushed back to server
+INFO  2015-09-11 22:19:14,413 Client fired -->null
+INFO  2015-09-11 22:27:47,560 Server socket established, , listening at port 2000
+INFO  2015-09-11 22:29:08,226 Connection established with client number = 1
+INFO  2015-09-11 22:29:08,226 Connection established at socket = Socket[addr=/192.17.11.11,port=51222,localport=2000]
+INFO  2015-09-11 22:29:08,227 Listening client: 1
+INFO  2015-09-11 22:29:08,228 Client fired -->grep
+INFO  2015-09-11 22:35:46,647 message flushed back to server
+INFO  2015-09-11 22:35:55,015 Server socket established, , listening at port 2000
+INFO  2015-09-11 22:36:05,850 Connection established with client number = 1
+INFO  2015-09-11 22:36:05,850 Connection established at socket = Socket[addr=/192.17.11.11,port=51228,localport=2000]
+INFO  2015-09-11 22:36:05,850 Listening client: 1
+INFO  2015-09-11 22:36:05,851 Client fired -->grep
+INFO  2015-09-11 22:37:06,241 Server socket established, , listening at port 2000
+INFO  2015-09-11 22:37:16,532 Connection established with client number = 1
+INFO  2015-09-11 22:37:16,532 Connection established at socket = Socket[addr=/192.17.11.11,port=51236,localport=2000]
+INFO  2015-09-11 22:37:16,533 Listening client: 1
+INFO  2015-09-11 22:37:16,534 Client fired -->grep x
+INFO  2015-09-11 22:37:16,542 message flushed back to server

@@ -21,7 +21,8 @@ public class ServerInstance extends Thread {
 	private String serverIpAddress = null;
 	private Socket clientSocket = null;
 	private int clientNbr = 0;
-	private final String PATH = " $HOME/git/YouAreFiredInc/YouAreFiredInc/CS425_MP1_server.log";
+	private final String PATH = " /home/pshrvst2/git/YouAreFiredInc/YouAreFiredInc/vm1.log";
+	//private final String PATH = " /home/xchen135/git/YouAreFiredInc/YouAreFiredInc/vm2.log";
 
 	public ServerInstance(Socket clientSocket, String ip, int clientNbr) {
 		// super();
@@ -43,6 +44,7 @@ public class ServerInstance extends Thread {
 			String clientCommand = "";
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					clientSocket.getInputStream()));
+			BufferedReader reader2 = null;
 			OutputStreamWriter writer = new OutputStreamWriter(
 					clientSocket.getOutputStream());
 			PrintWriter pw = new PrintWriter(clientSocket.getOutputStream(),
@@ -61,11 +63,18 @@ public class ServerInstance extends Thread {
 			System.out.println("The complete command is:" + clientCommand
 					+ PATH);
 
-			String outputOfTheCommand = inputStreamToString(proc
-					.getInputStream());
-			System.out.println("The output is:" + outputOfTheCommand);
+			//String outputOfTheCommand = inputStreamToString(proc
+			//		.getInputStream());
+			String message ="";
+			
+			reader2 = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			while ((message = reader2.readLine()) != null) {
+				pw.println("Machine1" +message);
+			}
+			
+			//System.out.println("The output is:" + outputOfTheCommand);
 
-			if (!(outputOfTheCommand.isEmpty() || outputOfTheCommand == null)) {
+			/*if (!(outputOfTheCommand.isEmpty() || outputOfTheCommand == null)) {
 				System.out.println(outputOfTheCommand);
 				pw.println("Output from "+serverIpAddress);
 				pw.println(outputOfTheCommand);
@@ -79,7 +88,7 @@ public class ServerInstance extends Thread {
 				System.out.println("No result found from server "+serverIpAddress);
 				pw.println("No result from "+serverIpAddress);
 				log.info("message flushed back to server");
-			}
+			}*/
 
 			reader.close();
 			writer.close();

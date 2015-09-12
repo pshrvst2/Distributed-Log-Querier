@@ -94,3 +94,15 @@ INFO  2015-09-11 22:37:16,533 message flushed to server
 INFO  2015-09-11 22:37:16,533 message flushed to server
 INFO  2015-09-11 22:37:45,955 INFO  2015-09-11 22:37:16,536 Client fired -->grep x
 INFO  2015-09-11 22:37:45,955 
+INFO  2015-09-11 22:48:56,163 Logging Initialized
+INFO  2015-09-11 22:49:10,207 Socket established with 192.17.11.11
+INFO  2015-09-11 22:49:10,208 message flushed to server
+INFO  2015-09-11 22:49:36,145 Error Message as below: 
+INFO  2015-09-11 22:51:02,451 Logging Initialized
+INFO  2015-09-11 22:51:09,789 Socket established with 192.17.11.11
+INFO  2015-09-11 22:51:09,790 message flushed to server
+INFO  2015-09-11 22:51:16,472 Error Message as below: 
+INFO  2015-09-11 22:59:29,999 Logging Initialized
+INFO  2015-09-11 22:59:35,647 Socket established with 192.17.11.11
+INFO  2015-09-11 22:59:35,648 message flushed to server
+INFO  2015-09-11 22:59:41,576 No result from 0.0.0.0/0.0.0.0

@@ -46,7 +46,7 @@ public class TcpServer {
 
 		try {
 			while (true) {
-				new ServerInstance(serverSocketListener.accept(),
+				new ServerInstance(serverSocketListener.accept(), serverSocketListener.getInetAddress().toString(),
 						++clientNumber).start();
 				log.info("Listening client: " + clientNumber);
 			}

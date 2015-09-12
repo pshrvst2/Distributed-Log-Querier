@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
@@ -22,7 +23,9 @@ public class ServerInstance extends Thread {
 	private Socket clientSocket = null;
 	private int clientNbr = 0;
 	private final String PATH = " /home/pshrvst2/git/YouAreFiredInc/YouAreFiredInc/vm1.log";
-	//private final String PATH = " /home/xchen135/git/YouAreFiredInc/YouAreFiredInc/vm2.log";
+
+	// private final String PATH =
+	// " /home/xchen135/git/YouAreFiredInc/YouAreFiredInc/vm2.log";
 
 	public ServerInstance(Socket clientSocket, String ip, int clientNbr) {
 		// super();
@@ -44,7 +47,7 @@ public class ServerInstance extends Thread {
 			String clientCommand = "";
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					clientSocket.getInputStream()));
-			BufferedReader reader2 = null;
+			BufferedReader processReader = null;
 			OutputStreamWriter writer = new OutputStreamWriter(
 					clientSocket.getOutputStream());
 			PrintWriter pw = new PrintWriter(clientSocket.getOutputStream(),
@@ -60,35 +63,25 @@ public class ServerInstance extends Thread {
 			Runtime rt = Runtime.getRuntime();
 			Process proc = rt.exec(clientCommand + PATH);
 
-			System.out.println("The complete command is:" + clientCommand
-					+ PATH);
+			System.out.println("The complete command is:" + clientCommand);
 
-			//String outputOfTheCommand = inputStreamToString(proc
-			//		.getInputStream());
-			String message ="";
-			
-			reader2 = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-			while ((message = reader2.readLine()) != null) {
-				pw.println("Machine1" +message);
+			// logic to map server ip to server name begins
+			String machineName = serverIpAddress;
+			VmIpAddresses vm = new VmIpAddresses();
+			HashMap<String, String> map = vm.getMappedAddress();
+
+			if (map.containsKey(serverIpAddress)) {
+				machineName = map.get(serverIpAddress);
 			}
-			
-			//System.out.println("The output is:" + outputOfTheCommand);
+			// logic to map server ip to server name ends
 
-			/*if (!(outputOfTheCommand.isEmpty() || outputOfTheCommand == null)) {
-				System.out.println(outputOfTheCommand);
-				pw.println("Output from "+serverIpAddress);
-				pw.println(outputOfTheCommand);
-				log.info("message flushed back to client");
-				log.info("Server to client --> " + clientNbr);
-				log.info("Server reply --> " + outputOfTheCommand);
+			String message = "";
+
+			processReader = new BufferedReader(new InputStreamReader(
+					proc.getInputStream()));
+			while ((message = processReader.readLine()) != null) {
+				pw.println(machineName + " : " + message);
 			}
-
-			// print out the error message if there is any
-			else {
-				System.out.println("No result found from server "+serverIpAddress);
-				pw.println("No result from "+serverIpAddress);
-				log.info("message flushed back to server");
-			}*/
 
 			reader.close();
 			writer.close();
@@ -101,31 +94,6 @@ public class ServerInstance extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	// method convert InputStream to String
-	private static String inputStreamToString(InputStream stream) {
-		BufferedReader reader = null;
-		StringBuilder builder = new StringBuilder();
-		String message;
-
-		try {
-			reader = new BufferedReader(new InputStreamReader(stream));
-			while ((message = reader.readLine()) != null) {
-				builder.append(message + "\n");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return builder.toString();
 	}
 
 }

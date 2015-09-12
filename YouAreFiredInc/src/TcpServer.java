@@ -3,7 +3,9 @@
  */
 
 import java.io.IOException;
+import java.net.Inet4Address;
 import java.net.ServerSocket;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
@@ -19,12 +21,13 @@ public class TcpServer {
 	 */
 	private static Logger log = Logger.getLogger(TcpServer.class);
 	private static int clientNumber = 0;
+	private static String serverIp = "127.0.0.1";
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
 		ServerSocket serverSocketListener = null;
-		//Socket clientSocket = null;
+		// Socket clientSocket = null;
 
 		boolean loggingFlag = initializeLogging();
 		if (loggingFlag)
@@ -40,13 +43,17 @@ public class TcpServer {
 			serverSocketListener.close();
 			return;
 		} else {
-			System.out.println("Server socket established, listening at port 2000");
+			System.out
+					.println("Server socket established, listening at port 2000");
 			log.info("Server socket established, , listening at port 2000");
+
+			serverIp = Inet4Address.getLocalHost().getHostAddress();
+			System.out.println(serverIp);
 		}
 
 		try {
 			while (true) {
-				new ServerInstance(serverSocketListener.accept(), serverSocketListener.getInetAddress().toString(),
+				new ServerInstance(serverSocketListener.accept(), serverIp,
 						++clientNumber).start();
 				log.info("Listening client: " + clientNumber);
 			}

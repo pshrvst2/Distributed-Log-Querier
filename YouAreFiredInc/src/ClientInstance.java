@@ -22,106 +22,60 @@ public class ClientInstance extends Thread {
 	private static BufferedReader serverReader = null;
 	private final String serverIp;
 	private final String userCommand;
-	private Socket socket; 
+	private Socket socket;
 
-	public ClientInstance(String serverAddress, String userCmd)
-	{
+	public ClientInstance(String serverAddress, String userCmd) {
 		this.serverIp = serverAddress;
-		//this.socket = new Socket(serverIp, 2000);
+		// this.socket = new Socket(serverIp, 2000);
 		this.userCommand = userCmd;
 	}
 
-	public void run() 
-	{
-		//Socket socket = null;
-		String userMessage = "";
-		String serverMessage = "";
+	public void run() {
+		StringBuffer serverMessage = new StringBuffer();
 
 		try {
 			socket = new Socket(serverIp, 2000);
 
-			log.info("Socket established with " +serverIp);
+			log.info("Socket established with " + serverIp);
 
-			userReader = new BufferedReader(new InputStreamReader(System.in));
-			serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			// userReader = new BufferedReader(new
+			// InputStreamReader(System.in));
+			serverReader = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
 
 			PrintWriter pw = null;
 			pw = new PrintWriter(socket.getOutputStream(), true);
-			
-			boolean flag = true;
-					pw.println(userCommand);
-				log.info("message flushed to server");
-				// pw.flush();
-				
-				//while(serverReader)
-				serverMessage = serverReader.readLine();
-				log.info(serverMessage);
-				System.out.println(serverMessage);
-			//}
 
-			userReader.close();
+			pw.println(userCommand);
+			log.info("message flushed to server");
+
+			String returnStr = "";
+
+			while ((returnStr = serverReader.readLine()) != null) {
+				serverMessage.append(returnStr);
+				serverMessage.append("\n");
+			}
+
+			log.info(serverMessage.toString());
+			System.out.println(serverMessage.toString());
+
+			// userReader.close();
 			serverReader.close();
 			pw.close();
 			socket.close();
-		} 
-		catch (IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			/*try 
-			{
-				userReader.close();
-				serverReader.close();
-				socket.close();
-				log.info("All connections closed. Exiting from the program. Bye!");
-			}
-			catch (IOException e) {
-				// TODO Auto-generated catch block
-				log.error(e);
-				e.printStackTrace();
-			}*/
+		} finally {
+			/*
+			 * try { userReader.close(); serverReader.close(); socket.close();
+			 * log
+			 * .info("All connections closed. Exiting from the program. Bye!");
+			 * } catch (IOException e) { // TODO Auto-generated catch block
+			 * log.error(e); e.printStackTrace(); }
+			 */
 		}
 
-		
 	}
-	
-	//method convert InputStream to String
-    private static String inputStreamToString(InputStream stream)
-    {
-            BufferedReader reader = null;
-            StringBuilder builder = new StringBuilder();
-            String message;
-            
-            try
-            {
-                            reader = new BufferedReader(new InputStreamReader(stream));
-                            while((message = reader.readLine()) != null)
-                            {
-                                    builder.append(message+"\n");
-                            }
-            }
-            catch(IOException e)
-            {
-                            e.printStackTrace();
-            }
-            finally
-            {
-                    if (reader != null)
-                    {
-                            try
-                            {
-                                    reader.close();
-                            }
-                            catch(IOException e)
-                            {
-                                    e.printStackTrace();
-                            }
-                    }
-            }
-            return builder.toString();
-    }
-
 
 }

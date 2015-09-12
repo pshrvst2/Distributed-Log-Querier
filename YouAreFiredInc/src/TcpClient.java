@@ -3,6 +3,8 @@
  */
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.Thread.State;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -20,6 +22,7 @@ public class TcpClient {
 	 */
 
 	private static Logger log = Logger.getLogger(TcpClient.class);
+	public static StringBuffer outputofthecommand = new StringBuffer();
 
 	/*
 	 * private static BufferedReader userReader = null; private static
@@ -64,7 +67,7 @@ public class TcpClient {
 			 */
 
 			List<String> vmList = vm.getAddresses();
-
+			List<Thread> clientThreadList = new ArrayList<Thread>();
 			/*
 			 * while(listItr.hasNext()) {
 			 * System.out.println("Connecting to server: " +listItr.next()); new
@@ -75,8 +78,26 @@ public class TcpClient {
 
 			for (int i = 0; i < vmList.size(); i++) {
 				System.out.println("Connecting to server: " + vmList.get(i));
-				new ClientInstance(vmList.get(i), userCommand).start();
+				Thread clientInstance = new ClientInstance(vmList.get(i), userCommand);
+				clientInstance.start();
+				clientThreadList.add(clientInstance);
+				
 			}
+			
+			while (!clientThreadList.isEmpty())
+			{
+				for(int i = 0; i < clientThreadList.size(); i++)
+				{
+					State state = clientThreadList.get(i).getState();
+					if(state == Thread.State.TERMINATED || state == Thread.State.BLOCKED)
+					{
+						clientThreadList.remove(clientThreadList.get(i));
+					}
+				}
+			}
+			
+			System.out.println("The complete output!");
+			System.out.println(OutputClass.getOutputofthecommand().toString());
 
 		} catch (Exception e) {
 			log.error(e);

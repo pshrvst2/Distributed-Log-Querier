@@ -54,10 +54,13 @@ public class ClientInstance extends Thread {
 			while ((returnStr = serverReader.readLine()) != null) {
 				serverMessage.append(returnStr);
 				serverMessage.append("\n");
+				OutputClass.appendOutput(returnStr);
 			}
+			
+			//OutputClass.setOutputofthecommand(serverMessage);
 
 			log.info(serverMessage.toString());
-			System.out.println(serverMessage.toString());
+			//System.out.println(serverMessage.toString());
 
 			// userReader.close();
 			serverReader.close();

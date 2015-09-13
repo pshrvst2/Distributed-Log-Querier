@@ -25,7 +25,7 @@ public class VmIpAddresses {
 		List<String> vmAddressList = new ArrayList<String>();
 		vmAddressList.add(vm1);
 		vmAddressList.add(vm2);
-		//vmAddressList.add(vm3);
+		vmAddressList.add(vm3);
 		return vmAddressList;
 	}
 

@@ -30,7 +30,7 @@ public class TcpServer {
 		ServerSocket serverSocketListener = null;
 		serverIp = Inet4Address.getLocalHost().getHostAddress();
 		System.out.println(serverIp);
-		// Socket clientSocket = null;
+		
 		// logic to map server ip to server name begins
 		String machineName = serverIp;
 		int port = 0;
@@ -66,8 +66,7 @@ public class TcpServer {
 
 		try {
 			while (true) {
-				new ServerInstance(serverSocketListener.accept(), serverIp,
-						++clientNumber).start();
+				new ServerInstance(serverSocketListener.accept(), serverIp, ++clientNumber).start();
 				log.info("Listening client: " + clientNumber);
 			}
 		} finally {
@@ -79,19 +78,16 @@ public class TcpServer {
 	public static boolean initializeLogging() {
 		try {
 			PatternLayout layout = new PatternLayout("%-5p %d %m%n");
-			RollingFileAppender appender = new RollingFileAppender(layout,
-					"CS425_MP1_server.log");
-
+			RollingFileAppender appender = new RollingFileAppender(layout, "CS425_MP1_server.log");
 			appender.setLayout(layout);
 			appender.setName("LOGFILE");
 			appender.setMaxFileSize("64MB");
 			appender.activateOptions();
 
 			Logger.getRootLogger().addAppender(appender);
-
 			return true;
+			
 		} catch (Exception e) {
-			// ;
 			return false;
 		}
 	}
@@ -100,10 +96,8 @@ public class TcpServer {
 
 		if (vmName.equalsIgnoreCase("vm1"))
 			return 2001;
-
 		else if (vmName.equalsIgnoreCase("vm2"))
 			return 2002;
-
 		else if (vmName.equalsIgnoreCase("vm3"))
 			return 2003;
 		else if (vmName.equalsIgnoreCase("vm4"))
@@ -116,7 +110,6 @@ public class TcpServer {
 			return 2007;
 		else
 			return 2000;
-
 	}
 
 }

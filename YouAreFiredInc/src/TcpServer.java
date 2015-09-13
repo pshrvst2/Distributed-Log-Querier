@@ -74,7 +74,7 @@ public class TcpServer {
 	public static boolean initializeLogging() {
 		try {
 			PatternLayout layout = new PatternLayout("%-5p %d %m%n");
-			RollingFileAppender appender = new RollingFileAppender(layout, "YouAreFileInc_Server.log");
+			RollingFileAppender appender = new RollingFileAppender(layout, "YouAreFireInc_Server.log");
 			appender.setLayout(layout);
 			appender.setName("LOGFILE");
 			appender.setMaxFileSize("64MB");

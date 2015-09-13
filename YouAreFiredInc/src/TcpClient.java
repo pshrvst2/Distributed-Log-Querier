@@ -2,9 +2,13 @@
  * 
  */
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.Thread.State;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -23,6 +27,7 @@ public class TcpClient {
 
 	private static Logger log = Logger.getLogger(TcpClient.class);
 	public static StringBuffer outputofthecommand = new StringBuffer();
+	public static VmIpAddresses vm = null;
 
 	/*
 	 * private static BufferedReader userReader = null; private static
@@ -60,7 +65,7 @@ public class TcpClient {
 				return;
 			}
 
-			VmIpAddresses vm = new VmIpAddresses();
+			vm = new VmIpAddresses();
 			/*
 			 * ListIterator<String> listItr = null; listItr =
 			 * vm.getAddresses().listIterator();
@@ -97,8 +102,33 @@ public class TcpClient {
 
 			if (clientThreadList.isEmpty()) {
 				System.out.println("The complete output!");
-				System.out.println(OutputClass.getOutputofthecommand()
-						.toString());
+				//System.out.println(OutputClass.getOutputofthecommand().toString());
+				for (int i = 0; i < vmList.size(); i++) 
+				{
+					String vmName = "";
+					HashMap<String, String> map = vm.getMappedAddress();
+					if (map.containsKey(vmList.get(i))) {
+						vmName = map.get(vmList.get(i));
+					}
+					
+					String fileName = vmName + ".txt";
+					FileInputStream resFile = new FileInputStream(fileName);
+					if (resFile.available() == 0)
+					{
+						System.out.println("No result from "+vmName);
+					}
+					else
+					{
+						BufferedReader reader = new BufferedReader(new InputStreamReader(resFile));
+						String singleLine = "";
+						Thread t = Thread.currentThread();
+						while((singleLine = reader.readLine())!=null)
+						{
+							t.sleep(1);
+							System.out.println(singleLine);
+						}
+					}
+				}
 			}
 
 		} catch (Exception e) {

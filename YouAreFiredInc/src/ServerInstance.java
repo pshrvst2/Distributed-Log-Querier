@@ -22,10 +22,9 @@ public class ServerInstance extends Thread {
 	private String serverIpAddress = null;
 	private Socket clientSocket = null;
 	private int clientNbr = 0;
-	// private final String PATH =
-	// " /home/pshrvst2/git/YouAreFiredInc/YouAreFiredInc/vm1.log";
+	private final String PATH = " /home/pshrvst2/git/YouAreFiredInc/YouAreFiredInc/vm1.log";
 
-	private final String PATH = " /home/xchen135/git/YouAreFiredInc/YouAreFiredInc/vm2.log";
+	//private final String PATH = " /home/xchen135/git/YouAreFiredInc/YouAreFiredInc/vm2.log";
 
 	public ServerInstance(Socket clientSocket, String ip, int clientNbr) {
 		// super();

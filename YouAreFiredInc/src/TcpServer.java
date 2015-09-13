@@ -5,6 +5,7 @@
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.ServerSocket;
+import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
@@ -27,7 +28,21 @@ public class TcpServer {
 		// TODO Auto-generated method stub
 
 		ServerSocket serverSocketListener = null;
+		serverIp = Inet4Address.getLocalHost().getHostAddress();
+		System.out.println(serverIp);
 		// Socket clientSocket = null;
+		// logic to map server ip to server name begins
+		String machineName = serverIp;
+		int port = 0;
+		VmIpAddresses vm = new VmIpAddresses();
+		HashMap<String, String> map = vm.getMappedAddress();
+
+		if (map.containsKey(serverIp)) {
+			machineName = map.get(serverIp);
+		}
+		port = getPort(machineName);
+		System.out.println(machineName);
+		// logic to map server ip to server name ends
 
 		boolean loggingFlag = initializeLogging();
 		if (loggingFlag)
@@ -35,7 +50,7 @@ public class TcpServer {
 		else
 			System.out.println("Logging coudn't be initialized");
 
-		serverSocketListener = new ServerSocket(2000);
+		serverSocketListener = new ServerSocket(port);
 
 		if (serverSocketListener.equals(null)) {
 			System.out.println("Server socket failed to open! terminating");
@@ -47,8 +62,6 @@ public class TcpServer {
 					.println("Server socket established, listening at port 2000");
 			log.info("Server socket established, , listening at port 2000");
 
-			serverIp = Inet4Address.getLocalHost().getHostAddress();
-			System.out.println(serverIp);
 		}
 
 		try {
@@ -81,6 +94,29 @@ public class TcpServer {
 			// ;
 			return false;
 		}
+	}
+
+	public static int getPort(String vmName) {
+
+		if (vmName.equalsIgnoreCase("vm1"))
+			return 2001;
+
+		else if (vmName.equalsIgnoreCase("vm2"))
+			return 2002;
+
+		else if (vmName.equalsIgnoreCase("vm3"))
+			return 2003;
+		else if (vmName.equalsIgnoreCase("vm4"))
+			return 2004;
+		else if (vmName.equalsIgnoreCase("vm5"))
+			return 2005;
+		else if (vmName.equalsIgnoreCase("vm6"))
+			return 2006;
+		else if (vmName.equalsIgnoreCase("vm7"))
+			return 2007;
+		else
+			return 2000;
+
 	}
 
 }

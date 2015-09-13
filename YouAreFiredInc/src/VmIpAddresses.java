@@ -13,18 +13,18 @@ import java.util.Map;
  */
 public class VmIpAddresses {
 
-	public final String machine1 = "192.17.11.11";
-	public final String machine2 = "192.17.11.12";
-	public final String machine3 = "";
-	public final String machine4 = "";
-	public final String machine5 = "";
-	public final String machine6 = "";
-	public final String machine7 = "";
+	public final String vm1 = "192.17.11.11";
+	public final String vm2 = "192.17.11.12";
+	public final String vm3 = "";
+	public final String vm4 = "";
+	public final String vm5 = "";
+	public final String vm6 = "";
+	public final String vm7 = "";
 
 	public List<String> getAddresses() {
 		List<String> vmAddressList = new ArrayList<String>();
-		vmAddressList.add(machine1);
-		vmAddressList.add(machine2);
+		vmAddressList.add(vm1);
+		vmAddressList.add(vm2);
 
 		return vmAddressList;
 	}
@@ -32,13 +32,13 @@ public class VmIpAddresses {
 	public HashMap<String, String> getMappedAddress() {
 		HashMap<String, String> map = new HashMap<String, String>();
 
-		map.put(machine1, "machine1");
-		map.put(machine2, "machine2");
-		map.put(machine3, "machine3");
-		map.put(machine4, "machine4");
-		map.put(machine5, "machine5");
-		map.put(machine6, "machine6");
-		map.put(machine7, "machine7");
+		map.put(vm1, "vm1");
+		map.put(vm2, "vm2");
+		map.put(vm3, "vm3");
+		map.put(vm4, "vm4");
+		map.put(vm5, "vm5");
+		map.put(vm6, "vm6");
+		map.put(vm7, "vm7");
 
 		return map;
 	}

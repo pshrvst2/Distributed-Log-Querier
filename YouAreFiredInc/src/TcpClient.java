@@ -78,28 +78,27 @@ public class TcpClient {
 
 			for (int i = 0; i < vmList.size(); i++) {
 				System.out.println("Connecting to server: " + vmList.get(i));
-				Thread clientInstance = new ClientInstance(vmList.get(i), userCommand);
+				Thread clientInstance = new ClientInstance(vmList.get(i),
+						userCommand);
 				clientInstance.start();
 				clientThreadList.add(clientInstance);
-				
+
 			}
-			
-			while (!clientThreadList.isEmpty())
-			{
-				for(int i = 0; i < clientThreadList.size(); i++)
-				{
+
+			while (!clientThreadList.isEmpty()) {
+				for (int i = 0; i < clientThreadList.size(); i++) {
 					State state = clientThreadList.get(i).getState();
-					if(state == Thread.State.TERMINATED || state == Thread.State.BLOCKED)
-					{
+					if (state == Thread.State.TERMINATED
+							|| state == Thread.State.BLOCKED) {
 						clientThreadList.remove(clientThreadList.get(i));
 					}
 				}
 			}
-			
-			if(clientThreadList.isEmpty())
-			{
+
+			if (clientThreadList.isEmpty()) {
 				System.out.println("The complete output!");
-				System.out.println(OutputClass.getOutputofthecommand().toString());
+				System.out.println(OutputClass.getOutputofthecommand()
+						.toString());
 			}
 
 		} catch (Exception e) {

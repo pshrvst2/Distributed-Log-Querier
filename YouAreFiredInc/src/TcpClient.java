@@ -46,13 +46,13 @@ public class TcpClient {
 				System.out.println("Logging coudn't be initialized");
 			}
 
-			System.out.println("Enter your command in the form: grep <> <> <>");
+			System.out.println("Enter your command in the form: grep <options> <pattern>");
 			System.out.println();
 			userReader = new BufferedReader(new InputStreamReader(System.in));
 			String userCommand = userReader.readLine();
 
 
-			if (!userCommand.substring(0, 4).equalsIgnoreCase("grep")) 
+			if ((userCommand == null) || (userCommand.length() < 4) || (!userCommand.substring(0, 4).equalsIgnoreCase("grep"))) 
 			{
 				System.out.println("Only grep accepted as per YouAreFiredInc project");
 				return;

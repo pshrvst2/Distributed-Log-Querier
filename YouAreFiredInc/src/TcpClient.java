@@ -96,8 +96,11 @@ public class TcpClient {
 				}
 			}
 			
-			System.out.println("The complete output!");
-			System.out.println(OutputClass.getOutputofthecommand().toString());
+			if(clientThreadList.isEmpty())
+			{
+				System.out.println("The complete output!");
+				System.out.println(OutputClass.getOutputofthecommand().toString());
+			}
 
 		} catch (Exception e) {
 			log.error(e);

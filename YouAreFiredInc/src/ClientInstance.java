@@ -52,6 +52,7 @@ public class ClientInstance extends Thread {
 			String returnStr = "";
 
 			while ((returnStr = serverReader.readLine()) != null) {
+				log.info(returnStr);
 				serverMessage.append(returnStr);
 				serverMessage.append("\n");
 				OutputClass.appendOutput(returnStr);
@@ -59,7 +60,7 @@ public class ClientInstance extends Thread {
 			
 			//OutputClass.setOutputofthecommand(serverMessage);
 
-			log.info(serverMessage.toString());
+			//log.info(serverMessage.toString());
 			//System.out.println(serverMessage.toString());
 
 			// userReader.close();

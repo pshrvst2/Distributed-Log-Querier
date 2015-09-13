@@ -61,7 +61,9 @@ public class ServerInstance extends Thread {
 			// flag = false;
 
 			Runtime rt = Runtime.getRuntime();
-			Process proc = rt.exec(clientCommand + PATH);
+			clientCommand = clientCommand + PATH;
+			//Process proc = rt.exec(clientCommand);
+			Process proc = rt.exec(new String[] {"bash", "-c", clientCommand});
 
 			System.out.println("The complete command is:" + clientCommand);
 

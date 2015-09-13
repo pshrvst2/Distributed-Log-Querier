@@ -2,12 +2,15 @@
  * 
  */
 import java.io.BufferedReader;
-import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.lang.Thread.State;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
@@ -34,6 +37,7 @@ public class TcpClient {
 		try 
 		{
 			boolean loggingFlag = initializeLogging();
+			Thread t = Thread.currentThread();
 			if (loggingFlag) {
 				System.out.println("Logging is initialized");
 				log.info("Logging Initialized");
@@ -52,17 +56,39 @@ public class TcpClient {
 				System.out.println("Only grep accepted as per YouAreFiredInc project");
 				return;
 			}
-
+			
+			// Delete old results logs
+			try
+			{
+				Runtime rt = Runtime.getRuntime();
+				Process proc = rt.exec(new String[] { "bash", "-c", "rm -rf vm*.txt" });
+			}
+			catch(FileNotFoundException filenotfound)
+			{
+				log.info("vm*.txt are not in the directory");
+			}
+			
 			vm = new VmIpAddresses();
 			List<String> vmList = vm.getAddresses();
 			List<Thread> clientThreadList = new ArrayList<Thread>();
 
 			for (int i = 0; i < vmList.size(); i++) {
 				System.out.println("Connecting to server: " + vmList.get(i));
-				Thread clientInstance = new ClientInstance(vmList.get(i),
-						userCommand);
-				clientInstance.start();
-				clientThreadList.add(clientInstance);
+				String vmName = "";
+				try {
+
+					HashMap<String, String> map = vm.getMappedAddress();
+					if (map.containsKey(vmList.get(i))) {
+						vmName = map.get(vmList.get(i));
+					}
+
+					Thread clientInstance = new ClientInstance(vmList.get(i),userCommand);
+					clientInstance.start();
+					clientThreadList.add(clientInstance);
+
+				} catch (Exception e) {
+					System.out.println("Could not connect to " + vmName);
+				}
 			}
 
 			while (!clientThreadList.isEmpty()) {
@@ -74,7 +100,9 @@ public class TcpClient {
 					}
 				}
 			}
-
+			
+			t.sleep(1000);
+			
 			if (clientThreadList.isEmpty()) 
 			{
 				System.out.println("The complete output!");
@@ -87,22 +115,23 @@ public class TcpClient {
 					}
 
 					String fileName = vmName + ".txt";
-					FileInputStream resFile = new FileInputStream(fileName);
-					if (resFile.available() == 0)
-					{
-						System.out.println("No result from "+vmName);
-					}
-					else
-					{
-						@SuppressWarnings("resource")
-						BufferedReader reader = new BufferedReader(new InputStreamReader(resFile));
-						String singleLine = "";
-						Thread t = Thread.currentThread();
-						while((singleLine = reader.readLine())!=null)
-						{
-							t.sleep(1);
-							System.out.println(singleLine);
+					try {
+						File f = new File(fileName);
+						if(!f.exists()){
+							System.out.println("No result from " + vmName);
+							log.info("No results from " + vmName);
+						} else {
+							@SuppressWarnings("resource")
+							BufferedReader reader = new BufferedReader(new FileReader(f));
+							String singleLine = "";
+							while ((singleLine = reader.readLine()) != null) {
+								t.sleep(10);
+								System.out.println(singleLine);
+								log.info(singleLine);
+							}
 						}
+					} catch (FileNotFoundException fExc) {
+						log.error(fExc);
 					}
 				}
 			}
@@ -129,6 +158,18 @@ public class TcpClient {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public static void deleteOldResultFiles(String fileName)
+	{
+		try{
+			log.info("Deleting the file "+fileName);
+			File file = new File(fileName);
+    		if(file.exists())
+    			file.delete();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
 	}
 
 }

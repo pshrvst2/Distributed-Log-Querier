@@ -45,11 +45,11 @@ public class ClientInstance extends Thread {
 				machineName = map.get(serverIp);
 			}
 			port = getPort(machineName);
-			System.out.println(machineName + ":" + String.valueOf(port));
 			// logic to map server ip to server name ends
 			
 			
 			socket = new Socket(serverIp, port);
+			System.out.println(machineName + " is connected at port: " + String.valueOf(port));
 			log.info("Socket established with " + serverIp);
 			serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			pw = new PrintWriter(socket.getOutputStream(), true);
@@ -75,7 +75,7 @@ public class ClientInstance extends Thread {
 			socket.close();
 		} catch (IOException e) {			
 			log.error(e);
-			e.printStackTrace();
+			//e.printStackTrace();
 		} finally {
 			
 		}

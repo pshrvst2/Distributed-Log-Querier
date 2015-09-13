@@ -85,7 +85,7 @@ public class TcpClient {
 					if (map.containsKey(vmList.get(i))) {
 						vmName = map.get(vmList.get(i));
 					}
-					
+
 					String fileName = vmName + ".txt";
 					FileInputStream resFile = new FileInputStream(fileName);
 					if (resFile.available() == 0)
@@ -116,8 +116,7 @@ public class TcpClient {
 	public static boolean initializeLogging() {
 		try {
 			PatternLayout layout = new PatternLayout("%-5p %d %m%n");
-			RollingFileAppender appender = new RollingFileAppender(layout,
-					"CS425_MP1_client.log");
+			RollingFileAppender appender = new RollingFileAppender(layout, "YouAreFiredInc_client.log");
 
 			appender.setLayout(layout);
 			appender.setName("LOGFILE");
@@ -128,7 +127,6 @@ public class TcpClient {
 
 			return true;
 		} catch (Exception e) {
-			// ;
 			return false;
 		}
 	}

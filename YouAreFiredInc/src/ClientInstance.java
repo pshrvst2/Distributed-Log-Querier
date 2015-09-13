@@ -19,11 +19,10 @@ import org.apache.log4j.Logger;
 public class ClientInstance extends Thread {
 
 	private static Logger log = Logger.getLogger(ClientInstance.class);
-	private static BufferedReader userReader = null;
-	private static BufferedReader serverReader = null;
+	//private static BufferedReader serverReader = null;
 	private final String serverIp;
 	private final String userCommand;
-	private Socket socket;
+	//private Socket socket;
 
 	public ClientInstance(String serverAddress, String userCmd) {
 		this.serverIp = serverAddress;
@@ -33,7 +32,11 @@ public class ClientInstance extends Thread {
 
 	public void run() {
 		StringBuffer serverMessage = new StringBuffer();
-
+		PrintWriter pw = null;
+		BufferedReader serverReader = null;
+		Socket socket;
+		PrintWriter resultWriter = null;
+		
 		try {
 
 			// logic to map server ip to server name begins
@@ -52,47 +55,39 @@ public class ClientInstance extends Thread {
 
 			log.info("Socket established with " + serverIp);
 
-			// userReader = new BufferedReader(new
-			// InputStreamReader(System.in));
+
 			serverReader = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
 
-			PrintWriter pw = null;
+			
 			pw = new PrintWriter(socket.getOutputStream(), true);
 
 			pw.println(userCommand);
 			log.info("message flushed to server");
 
 			String returnStr = "";
-
+			resultWriter = new PrintWriter(machineName + ".txt", "UTF-8" );
 			long threadId = Thread.currentThread().getId();
+			log.info(threadId);
 			while ((returnStr = serverReader.readLine()) != null) {
 				log.info(" Thread Id " + threadId + " : " + returnStr);
 				serverMessage.append(returnStr);
 				serverMessage.append("\n");
 				OutputClass.appendOutput(returnStr);
+				resultWriter.println(returnStr);
 			}
 
-			// OutputClass.setOutputofthecommand(serverMessage);
-
-			// log.info(serverMessage.toString());
-			// System.out.println(serverMessage.toString());
-
-			// userReader.close();
+			
+			
 			serverReader.close();
+			resultWriter.close();
 			pw.close();
 			socket.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {			
+			log.error(e);
 			e.printStackTrace();
 		} finally {
-			/*
-			 * try { userReader.close(); serverReader.close(); socket.close();
-			 * log
-			 * .info("All connections closed. Exiting from the program. Bye!");
-			 * } catch (IOException e) { // TODO Auto-generated catch block
-			 * log.error(e); e.printStackTrace(); }
-			 */
+			
 		}
 
 	}

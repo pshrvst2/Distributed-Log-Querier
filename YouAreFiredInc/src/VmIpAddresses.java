@@ -15,7 +15,7 @@ public class VmIpAddresses {
 
 	public final String vm1 = "192.17.11.11";
 	public final String vm2 = "192.17.11.12";
-	public final String vm3 = "";
+	public final String vm3 = "192.17.11.10";
 	public final String vm4 = "";
 	public final String vm5 = "";
 	public final String vm6 = "";
@@ -25,7 +25,7 @@ public class VmIpAddresses {
 		List<String> vmAddressList = new ArrayList<String>();
 		vmAddressList.add(vm1);
 		vmAddressList.add(vm2);
-
+		//vmAddressList.add(vm3);
 		return vmAddressList;
 	}
 

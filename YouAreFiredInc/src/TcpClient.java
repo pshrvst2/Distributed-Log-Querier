@@ -2,15 +2,12 @@
  * 
  */
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.Thread.State;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
@@ -29,21 +26,13 @@ public class TcpClient {
 	public static StringBuffer outputofthecommand = new StringBuffer();
 	public static VmIpAddresses vm = null;
 
-	/*
-	 * private static BufferedReader userReader = null; private static
-	 * BufferedReader serverReader = null;
-	 */
-
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		/*
-		 * Socket socket = null; String userMessage = ""; String serverMessage =
-		 * "";
-		 */
 		BufferedReader userReader = null;
 
-		try {
+		try 
+		{
 			boolean loggingFlag = initializeLogging();
 			if (loggingFlag) {
 				System.out.println("Logging is initialized");
@@ -56,30 +45,17 @@ public class TcpClient {
 			System.out.println();
 			userReader = new BufferedReader(new InputStreamReader(System.in));
 			String userCommand = userReader.readLine();
-			// System.out.println("You entered the command: "+userCommand.substring(0,
-			// 4));
 
-			if (!userCommand.substring(0, 4).equalsIgnoreCase("grep")) {
-				System.out
-						.println("Only grep accepted as per YouAreFiredInc project");
+
+			if (!userCommand.substring(0, 4).equalsIgnoreCase("grep")) 
+			{
+				System.out.println("Only grep accepted as per YouAreFiredInc project");
 				return;
 			}
 
 			vm = new VmIpAddresses();
-			/*
-			 * ListIterator<String> listItr = null; listItr =
-			 * vm.getAddresses().listIterator();
-			 */
-
 			List<String> vmList = vm.getAddresses();
 			List<Thread> clientThreadList = new ArrayList<Thread>();
-			/*
-			 * while(listItr.hasNext()) {
-			 * System.out.println("Connecting to server: " +listItr.next()); new
-			 * ClientInstance(listItr.next()).start();
-			 * 
-			 * }
-			 */
 
 			for (int i = 0; i < vmList.size(); i++) {
 				System.out.println("Connecting to server: " + vmList.get(i));
@@ -87,7 +63,6 @@ public class TcpClient {
 						userCommand);
 				clientInstance.start();
 				clientThreadList.add(clientInstance);
-
 			}
 
 			while (!clientThreadList.isEmpty()) {
@@ -100,9 +75,9 @@ public class TcpClient {
 				}
 			}
 
-			if (clientThreadList.isEmpty()) {
+			if (clientThreadList.isEmpty()) 
+			{
 				System.out.println("The complete output!");
-				//System.out.println(OutputClass.getOutputofthecommand().toString());
 				for (int i = 0; i < vmList.size(); i++) 
 				{
 					String vmName = "";
@@ -119,6 +94,7 @@ public class TcpClient {
 					}
 					else
 					{
+						@SuppressWarnings("resource")
 						BufferedReader reader = new BufferedReader(new InputStreamReader(resFile));
 						String singleLine = "";
 						Thread t = Thread.currentThread();

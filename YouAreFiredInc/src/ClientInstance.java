@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
@@ -23,7 +24,8 @@ public class ClientInstance extends Thread {
 	private final String serverIp;
 	private final String userCommand;
 	private Socket socket;
-
+	private String machineName; 
+	
 	public ClientInstance(String serverAddress, String userCmd) {
 		this.serverIp = serverAddress;
 		// this.socket = new Socket(serverIp, 2000);
@@ -35,7 +37,12 @@ public class ClientInstance extends Thread {
 
 		try {
 			socket = new Socket(serverIp, 2000);
-
+			VmIpAddresses vm = new VmIpAddresses();
+			HashMap<String, String> hashmap = new HashMap<String, String>();
+			hashmap = vm.getMappedAddress();
+			if(hashmap.containsKey(serverIp))
+				machineName = hashmap.get(serverIp);
+			
 			log.info("Socket established with " + serverIp);
 
 			// userReader = new BufferedReader(new
@@ -43,19 +50,20 @@ public class ClientInstance extends Thread {
 			serverReader = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
 
-			PrintWriter pw = null;
-			pw = new PrintWriter(socket.getOutputStream(), true);
+			PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
 
 			pw.println(userCommand);
 			log.info("message flushed to server");
 
 			String returnStr = "";
-
+			PrintWriter resultWriter = new PrintWriter(machineName+".txt", "UTF-8");
 			while ((returnStr = serverReader.readLine()) != null) {
 				log.info(returnStr);
-				serverMessage.append(returnStr);
-				serverMessage.append("\n");
-				OutputClass.appendOutput(returnStr);
+				//serverMessage.append(returnStr);
+				//serverMessage.append("\n");
+				//OutputClass.appendOutput(returnStr);
+				resultWriter.println(returnStr);
+				log.info("What the hell " + returnStr);
 			}
 			
 			//OutputClass.setOutputofthecommand(serverMessage);
@@ -64,6 +72,7 @@ public class ClientInstance extends Thread {
 			//System.out.println(serverMessage.toString());
 
 			// userReader.close();
+			resultWriter.close();
 			serverReader.close();
 			pw.close();
 			socket.close();

@@ -23,7 +23,7 @@ public class VmIpAddresses {
 
 	public List<String> getAddresses() {
 		List<String> vmAddressList = new ArrayList<String>();
-		//vmAddressList.add(machine1);
+		vmAddressList.add(machine1);
 		vmAddressList.add(machine2);
 
 		return vmAddressList;

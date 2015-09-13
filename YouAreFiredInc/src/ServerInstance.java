@@ -75,6 +75,7 @@ public class ServerInstance extends Thread {
 			if (map.containsKey(serverIpAddress)) {
 				machineName = map.get(serverIpAddress);
 			}
+			System.out.println(machineName);
 			// logic to map server ip to server name ends
 
 			String message = "";
@@ -83,6 +84,7 @@ public class ServerInstance extends Thread {
 					proc.getInputStream()));
 			while ((message = processReader.readLine()) != null) {
 				pw.println(machineName + " : " + message);
+				System.out.println(machineName + " : " + message);
 			}
 
 			reader.close();

@@ -29,7 +29,6 @@ public class TcpServer {
 
 		ServerSocket serverSocketListener = null;
 		serverIp = Inet4Address.getLocalHost().getHostAddress();
-		System.out.println(serverIp);
 		
 		// logic to map server ip to server name begins
 		String machineName = serverIp;
@@ -41,9 +40,8 @@ public class TcpServer {
 			machineName = map.get(serverIp);
 		}
 		port = getPort(machineName);
-		System.out.println(machineName);
+		
 		// logic to map server ip to server name ends
-
 		boolean loggingFlag = initializeLogging();
 		if (loggingFlag)
 			System.out.println("Logging is initialized");
@@ -58,10 +56,8 @@ public class TcpServer {
 			serverSocketListener.close();
 			return;
 		} else {
-			System.out
-					.println("Server socket established, listening at port 2000");
-			log.info("Server socket established, , listening at port 2000");
-
+			System.out.println(machineName+ " Server socket established, listening at port: "+port);
+			log.info(machineName+ " Server socket established, listening at port: "+port);
 		}
 
 		try {
@@ -78,7 +74,7 @@ public class TcpServer {
 	public static boolean initializeLogging() {
 		try {
 			PatternLayout layout = new PatternLayout("%-5p %d %m%n");
-			RollingFileAppender appender = new RollingFileAppender(layout, "CS425_MP1_server.log");
+			RollingFileAppender appender = new RollingFileAppender(layout, "YouAreFileInc_Server.log");
 			appender.setLayout(layout);
 			appender.setName("LOGFILE");
 			appender.setMaxFileSize("64MB");

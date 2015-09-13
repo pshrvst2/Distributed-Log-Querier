@@ -33,6 +33,7 @@ public class TcpClient {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BufferedReader userReader = null;
+		double latency = 0.0;
 
 		try 
 		{
@@ -72,6 +73,8 @@ public class TcpClient {
 			List<String> vmList = vm.getAddresses();
 			List<Thread> clientThreadList = new ArrayList<Thread>();
 
+			long timerStarts = System.currentTimeMillis();
+			
 			for (int i = 0; i < vmList.size(); i++) {
 				System.out.println("Connecting to server: " + vmList.get(i));
 				String vmName = "";
@@ -101,11 +104,16 @@ public class TcpClient {
 				}
 			}
 			
+			long timerEnds = System.currentTimeMillis();
+			latency = (timerEnds - timerStarts)/1000.0;
+			
+			
 			t.sleep(1000);
 			
 			if (clientThreadList.isEmpty()) 
 			{
-				System.out.println("The complete output!");
+				System.out.println("The latency is: "+ String.valueOf(latency)+" seconds, and the complete output as below: \n");
+				log.info("The latency is: "+ String.valueOf(latency));
 				for (int i = 0; i < vmList.size(); i++) 
 				{
 					String vmName = "";

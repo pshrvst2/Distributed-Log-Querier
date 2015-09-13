@@ -13,19 +13,24 @@ import java.util.Map;
  */
 public class VmIpAddresses {
 
-	public final String vm1 = "192.17.11.11";
-	public final String vm2 = "192.17.11.12";
-	public final String vm3 = "192.17.11.10";
-	public final String vm4 = "";
-	public final String vm5 = "";
-	public final String vm6 = "";
-	public final String vm7 = "";
+	public final String vm1 = "172.22.151.17";
+	public final String vm2 = "172.22.151.18";
+	public final String vm3 = "172.22.151.19";
+	public final String vm4 = "172.22.151.20";
+	public final String vm5 = "172.22.151.21";
+	public final String vm6 = "172.22.151.22";
+	public final String vm7 = "172.22.151.23";
 
 	public List<String> getAddresses() {
 		List<String> vmAddressList = new ArrayList<String>();
 		vmAddressList.add(vm1);
 		vmAddressList.add(vm2);
 		vmAddressList.add(vm3);
+		vmAddressList.add(vm4);
+		vmAddressList.add(vm5);
+		vmAddressList.add(vm6);
+		vmAddressList.add(vm7);
+		
 		return vmAddressList;
 	}
 

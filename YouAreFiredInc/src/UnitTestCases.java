@@ -141,26 +141,26 @@ public class UnitTestCases {
 		BufferedFile = new BufferedReader(new FileReader(f2));		
 		if(tc.BufferComparer(BufferedR, BufferedFile,FILE_NAME_T))
 		{
-			System.out.println("The frequent pattern matched!");
+			System.out.println("The some what frequent pattern matched!");
 			passNum++;
 		}
 		else
-			System.out.println("Fail to match the frequent pattern!");
+			System.out.println("Fail to match the some what frequent pattern!");
 		System.out.println("---------------------------------------------");
 
 		// Check the rare pattern
-		System.out.println("3. Start to check the frequnt pattern : "+ RARE_PATTERN);
+		System.out.println("3. Start to check the rare pattern : "+ RARE_PATTERN);
 		testNum++;
 		BufferedR = ServerInstance.grepCommandResult(RARE_PATTERN, FILE_NAME_T,PATH);
 		File f3 = new File(FILE_NAME_R);
 		BufferedFile = new BufferedReader(new FileReader(f3));		
 		if(tc.BufferComparer(BufferedR, BufferedFile,FILE_NAME_T))
 		{
-			System.out.println("The frequent pattern matched!");
+			System.out.println("The rare pattern matched!");
 			passNum++;
 		}
 		else
-			System.out.println("Fail to match the frequent pattern!");
+			System.out.println("Fail to match the rare pattern!");
 		System.out.println("---------------------------------------------");
 
 		System.out.println("We have "+testNum+" tests, passed "+passNum+".");

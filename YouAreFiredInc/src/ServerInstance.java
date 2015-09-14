@@ -21,8 +21,8 @@ public class ServerInstance extends Thread {
 	private static Logger log = Logger.getLogger(ServerInstance.class);
 	private String serverIpAddress = null;
 	private Socket clientSocket = null;
-	private final String PATH = " /home/vm*.log";
-	//private final String PATH = " /home/xchen135/git/YouAreFiredInc/YouAreFiredInc/vm2.log";
+	//private final String PATH = " /home/pshrvst2/git/YouAreFiredInc/YouAreFiredInc/vm1.log";
+	private final String PATH = " /home/xchen135/git/YouAreFiredInc/YouAreFiredInc/vm2.log";
 
 	public ServerInstance(Socket clientSocket, String ip, int clientNbr) {
 		log.info("Connection established with client number = " + clientNbr);
@@ -35,6 +35,23 @@ public class ServerInstance extends Thread {
 		this.serverIpAddress = ip;
 	}
 
+	// Method return the grep command result from the server
+	public static BufferedReader grepCommandResult(String Pattern, String fileName, String path) {
+		BufferedReader br = null;
+		try {
+			Runtime rt = Runtime.getRuntime();
+			String clientCommand = "grep " + Pattern + path + fileName;
+			Process proc = rt
+					.exec(new String[] { "bash", "-c", clientCommand });
+
+			br = new BufferedReader(
+					new InputStreamReader(proc.getInputStream()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return br;
+	}
+	
 	public void run() {
 		
 		try {

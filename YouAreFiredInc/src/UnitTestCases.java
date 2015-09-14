@@ -77,24 +77,7 @@ public class UnitTestCases {
 		fileGenerator(FILE_NAME_SF, SOMEWHAT_FREQ_PATTERN,numOfSFreq);
 		fileGenerator(FILE_NAME_R, RARE_PATTERN,numOfRare);
 	}
-	
-	// The grep method we have in the TCPClinet. The main method we want to test here
-	public BufferedReader grepCommandResult(String Pattern, String fileName) {
-		BufferedReader br = null;
-		try {
-			Runtime rt = Runtime.getRuntime();
-			String clientCommand = "grep " + Pattern + PATH + fileName;
-			Process proc = rt
-					.exec(new String[] { "bash", "-c", clientCommand });
 
-			br = new BufferedReader(
-					new InputStreamReader(proc.getInputStream()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return br;
-	}
-	
 	// Method compare two buffers 
 	public Boolean BufferComparer(BufferedReader brCommand,BufferedReader brFile, String fileName) throws IOException
 	{
@@ -138,7 +121,7 @@ public class UnitTestCases {
 		// Check the frequent pattern
 		System.out.println("1. Start to check the frequnt pattern : "+ FREQ_PATTERN);
 		testNum++;
-		BufferedR = tc.grepCommandResult(FREQ_PATTERN, FILE_NAME_T);
+		BufferedR = ServerInstance.grepCommandResult(FREQ_PATTERN, FILE_NAME_T,PATH);
 		File f1 = new File(FILE_NAME_F);
 		BufferedFile = new BufferedReader(new FileReader(f1));		
 		if(tc.BufferComparer(BufferedR, BufferedFile,FILE_NAME_T))
@@ -153,7 +136,7 @@ public class UnitTestCases {
 		// Check the some what frequent pattern
 		System.out.println("2. Start to check the some what frequnt pattern : "+ SOMEWHAT_FREQ_PATTERN);
 		testNum++;
-		BufferedR = tc.grepCommandResult(SOMEWHAT_FREQ_PATTERN, FILE_NAME_T);
+		BufferedR = ServerInstance.grepCommandResult(SOMEWHAT_FREQ_PATTERN, FILE_NAME_T,PATH);
 		File f2 = new File(FILE_NAME_SF);
 		BufferedFile = new BufferedReader(new FileReader(f2));		
 		if(tc.BufferComparer(BufferedR, BufferedFile,FILE_NAME_T))
@@ -168,7 +151,7 @@ public class UnitTestCases {
 		// Check the rare pattern
 		System.out.println("3. Start to check the frequnt pattern : "+ RARE_PATTERN);
 		testNum++;
-		BufferedR = tc.grepCommandResult(RARE_PATTERN, FILE_NAME_T);
+		BufferedR = ServerInstance.grepCommandResult(RARE_PATTERN, FILE_NAME_T,PATH);
 		File f3 = new File(FILE_NAME_R);
 		BufferedFile = new BufferedReader(new FileReader(f3));		
 		if(tc.BufferComparer(BufferedR, BufferedFile,FILE_NAME_T))

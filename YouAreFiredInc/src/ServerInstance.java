@@ -21,7 +21,8 @@ public class ServerInstance extends Thread {
 	private static Logger log = Logger.getLogger(ServerInstance.class);
 	private String serverIpAddress = null;
 	private Socket clientSocket = null;
-	private final String PATH = " /home/vm*.log";
+	//private final String PATH = " /home/vm*.log";
+	private final String PATH = "/home/pshrvst2/TheTribeHasSpokenInc/TheTribeHasSpokenInc/TheTribeHasSpokenInc/src/CS425_MP2_node.log";
 	//private final String PATH = " /home/xchen135/git/YouAreFiredInc/YouAreFiredInc/vm2.log";
 
 	public ServerInstance(Socket clientSocket, String ip, int clientNbr) {
